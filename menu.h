@@ -11,6 +11,16 @@
 //# include "SDL_mixer.h"
 //# include "SDL_ttf.h"
 
+
+typedef struct 		s_mtext
+{
+	TTF_Font		*font;
+	SDL_Surface		*s;
+	SDL_Color		color;
+	SDL_Texture		*tex;
+	SDL_Rect		rect;
+}					t_mtext;
+
 typedef struct		s_back
 {
 	SDL_Surface		*s;
@@ -23,6 +33,7 @@ typedef struct		s_menu
 	SDL_Window		*w;
 	SDL_Renderer	*r;
 	t_back			backgrnd;
+	t_mtext			txt;
 	SDL_Event		e;
 	int				quit;
 	int				sw;

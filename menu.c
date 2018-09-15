@@ -1,9 +1,29 @@
 #include "menu.h"
 #include <stdio.h>
 
+void		loadtexts(t_menu *m)
+{
+	m->txt.font = TTF_OpenFont("m_fonts/opensans.ttf", 50);
+	if (m->txt.font == NULL)
+	{
+		write(1, "Font error\n", 11);
+		exit(1);
+	}
+	m->txt.color.r = 255;
+	m->txt.color.g = 255;
+	m->txt.color.b = 255;
+	//m->txt.color.a = 100;
+	m->txt.s = TTF_RenderText_Solid(m->txt.font, "Example", m->txt.color);
+	m->txt.tex = SDL_CreateTextureFromSurface(m->r, m->txt.s);
+	m->txt.rect.x = 10;
+	m->txt.rect.y = 10;
+	m->txt.rect.w = 100;
+	m->txt.rect.h = 30;
+}
+
 void		initializer(t_menu *m)
 {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO) < 0 || TTF_Init() < 0)
 	{
 		write(1, "Error\n", 1);
 		exit(1);
@@ -14,6 +34,7 @@ void		initializer(t_menu *m)
 	m->sw = 0;
 	m->backgrnd.s = IMG_Load("m_images/blue_rect.png");
 	m->backgrnd.tex = SDL_CreateTextureFromSurface(m->r, m->backgrnd.s);
+	loadtexts(m);
 	m->backgrnd.rect.x = 0;
 	m->backgrnd.rect.y = 0;
 	m->backgrnd.rect.w = 400;
@@ -36,8 +57,11 @@ void		event_listener(t_menu *m)
 }
 
 void		destructor(t_menu *m)
-{
+{	
+	TTF_CloseFont(m->txt.font);
+	SDL_DestroyTexture(m->txt.tex);
 	SDL_DestroyTexture(m->backgrnd.tex);
+	SDL_FreeSurface(m->txt.s);
 	SDL_FreeSurface(m->backgrnd.s);
 	SDL_DestroyRenderer(m->r);
 	SDL_DestroyWindow(m->w);
@@ -54,9 +78,11 @@ void			menu(void)
 			event_listener(&m);
 		SDL_RenderClear(m.r);
 		SDL_RenderCopy(m.r, m.backgrnd.tex, NULL, &m.backgrnd.rect);
+		SDL_RenderCopy(m.r, m.txt.tex, NULL, &m.txt.rect);
 		SDL_RenderPresent(m.r);
 	}
 	destructor(&m);
+	TTF_Quit();
 	SDL_Quit();
 }
 
