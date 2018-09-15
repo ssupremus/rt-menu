@@ -1,6 +1,7 @@
 #include "menu.h"
+#include <stdio.h>
 
-static void		initializer(t_menu *m)
+void		initializer(t_menu *m)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -9,16 +10,18 @@ static void		initializer(t_menu *m)
 	}
 	m->w = SDL_CreateWindow("Menu RT", 0, 0, MWIDTH, MHEIGHT, SDL_WINDOW_SHOWN);
 	m->r = SDL_CreateRenderer(m->w, -1, SDL_RENDERER_ACCELERATED);
+	m->quit = 0;
+	m->sw = 0;
 }
 
-static void		menu_keys(t_menu *m)
+void		menu_keys(t_menu *m)
 {
 	m->keystate = SDL_GetKeyboardState(NULL);
 	if (m->keystate[SDL_SCANCODE_ESCAPE])
 			m->quit = 1;
 }
 
-static void		event_listener(t_menu *m)
+void		event_listener(t_menu *m)
 {
 	if (m->e.type == SDL_QUIT)
 		m->quit = 1;
@@ -26,12 +29,10 @@ static void		event_listener(t_menu *m)
 		menu_keys(m);
 }
 
-static void		destructor(t_menu *m)
+void		destructor(t_menu *m)
 {
 	SDL_DestroyRenderer(m->r);
 	SDL_DestroyWindow(m->w);
-	m->quit = 0;
-	m->sw = 0;
 }
 
 void			menu(void)
