@@ -11,11 +11,18 @@
 //# include "SDL_mixer.h"
 //# include "SDL_ttf.h"
 
+typedef struct		s_back
+{
+	SDL_Surface		*s;
+	SDL_Texture		*tex;
+	SDL_Rect		rect;
+}					t_back;
+
 typedef struct		s_menu
 {
 	SDL_Window		*w;
 	SDL_Renderer	*r;
-	SDL_Surface		*s;
+	t_back			backgrnd;
 	SDL_Event		e;
 	int				quit;
 	int				sw;

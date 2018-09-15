@@ -12,6 +12,12 @@ void		initializer(t_menu *m)
 	m->r = SDL_CreateRenderer(m->w, -1, SDL_RENDERER_ACCELERATED);
 	m->quit = 0;
 	m->sw = 0;
+	m->backgrnd.s = IMG_Load("m_images/blue_rect.png");
+	m->backgrnd.tex = SDL_CreateTextureFromSurface(m->r, m->backgrnd.s);
+	m->backgrnd.rect.x = 0;
+	m->backgrnd.rect.y = 0;
+	m->backgrnd.rect.w = 400;
+	m->backgrnd.rect.h = 1300;	
 }
 
 void		menu_keys(t_menu *m)
@@ -31,6 +37,8 @@ void		event_listener(t_menu *m)
 
 void		destructor(t_menu *m)
 {
+	SDL_DestroyTexture(m->backgrnd.tex);
+	SDL_FreeSurface(m->backgrnd.s);
 	SDL_DestroyRenderer(m->r);
 	SDL_DestroyWindow(m->w);
 }
@@ -45,6 +53,7 @@ void			menu(void)
 		if (SDL_WaitEvent(&m.e))
 			event_listener(&m);
 		SDL_RenderClear(m.r);
+		SDL_RenderCopy(m.r, m.backgrnd.tex, NULL, &m.backgrnd.rect);
 		SDL_RenderPresent(m.r);
 	}
 	destructor(&m);
