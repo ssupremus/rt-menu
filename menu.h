@@ -15,10 +15,10 @@
 typedef struct 		s_mtext
 {
 	TTF_Font		*font;
-	SDL_Surface		*s;
 	SDL_Color		color;
-	SDL_Texture		*tex;
-	SDL_Rect		rect;
+	SDL_Surface		*s[2];
+	SDL_Texture		*tex[2];
+	SDL_Rect		rect[2];
 }					t_mtext;
 
 typedef struct		s_back
