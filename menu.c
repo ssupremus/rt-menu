@@ -150,8 +150,6 @@ void		fields(t_menu *m)
 	m->f.rect[13].y = 340;
 	m->f.rect[13].w = 85;
 	m->f.rect[13].h = 30;
-
-	printf("%d\n", t);
 }
 
 void		ft_sw(t_menu *m)
@@ -180,7 +178,7 @@ void		initializer(t_menu *m)
 	m->w = SDL_CreateWindow("RT - Menu", 0, 0, MWIDTH, MHEIGHT, SDL_WINDOW_SHOWN);
 	m->r = SDL_CreateRenderer(m->w, -1, SDL_RENDERER_ACCELERATED);
 	m->quit = 0;
-	m->sw = 0;
+	m->sw = -1;
 	m->backgrnd.s = IMG_Load("m_images/blue_rect.png");
 	m->backgrnd.tex = SDL_CreateTextureFromSurface(m->r, m->backgrnd.s);
 	loadtexts(m);
@@ -199,12 +197,44 @@ void		menu_keys(t_menu *m)
 			m->quit = 1;
 }
 
+void		menu_motion(t_menu *m)
+{
+	if (m->e.motion.x > 160 && m->e.motion.x < 245 && m->e.motion.y > 60 && m->e.motion.y < 90)
+		m->sw = 0;
+	else if (m->e.motion.x > 160 && m->e.motion.x < 245 && m->e.motion.y > 100 && m->e.motion.y < 130)
+		m->sw = 1;
+	else if (m->e.motion.x > 160 && m->e.motion.x < 245 && m->e.motion.y > 140 && m->e.motion.y < 170)
+		m->sw = 2;
+	else if (m->e.motion.x > 160 && m->e.motion.x < 245 && m->e.motion.y > 180 && m->e.motion.y < 210)
+		m->sw = 3;
+	else if (m->e.motion.x > 250 && m->e.motion.x < 335 && m->e.motion.y > 60 && m->e.motion.y < 90)
+		m->sw = 4;
+	else if (m->e.motion.x > 250 && m->e.motion.x < 335 && m->e.motion.y > 100 && m->e.motion.y < 130)
+		m->sw = 5;
+	else if (m->e.motion.x > 250 && m->e.motion.x < 335&& m->e.motion.y > 140 && m->e.motion.y < 170)
+		m->sw = 6;
+	else if (m->e.motion.x > 250 && m->e.motion.x < 335 && m->e.motion.y > 180 && m->e.motion.y < 210)
+		m->sw = 7;
+	else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 220 && m->e.motion.y < 250)
+		m->sw = 8;
+	else if (m->e.motion.x > 160 && m->e.motion.x < 245 && m->e.motion.y > 260 && m->e.motion.y < 290)
+		m->sw = 9;
+	else if (m->e.motion.x > 250 && m->e.motion.x < 335 && m->e.motion.y > 260 && m->e.motion.y < 290)
+		m->sw = 10;
+	else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 300 && m->e.motion.y < 330)
+		m->sw = 11;
+	else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 340 && m->e.motion.y < 370)
+		m->sw = 12;
+}
+
 void		event_listener(t_menu *m)
 {
 	if (m->e.type == SDL_QUIT)
 		m->quit = 1;
 	else if (m->e.type == SDL_KEYDOWN)
 		menu_keys(m);
+	else if (m->e.type == SDL_MOUSEMOTION)
+		menu_motion(m);
 }
 
 void		destructor(t_menu *m)
@@ -246,7 +276,8 @@ void			menu(void)
 		i = -1;
 		while (++i < 20)
 			SDL_RenderCopy(m.r, m.txt.tex[i], NULL, &m.txt.rect[i]);
-		SDL_RenderCopy(m.r, m.slct.tex, NULL, &m.slct.rect[5]);
+		if (m.sw >= 0)
+			SDL_RenderCopy(m.r, m.slct.tex, NULL, &m.slct.rect[m.sw]);
 		SDL_RenderPresent(m.r);
 	}
 	destructor(&m);
