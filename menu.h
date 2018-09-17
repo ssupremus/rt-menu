@@ -16,9 +16,9 @@ typedef struct 		s_mtext
 {
 	TTF_Font		*font;
 	SDL_Color		color;
-	SDL_Surface		*s[10];
-	SDL_Texture		*tex[10];
-	SDL_Rect		rect[10];
+	SDL_Surface		*s[20];
+	SDL_Texture		*tex[20];
+	SDL_Rect		rect[20];
 }					t_mtext;
 
 typedef struct		s_back
@@ -32,7 +32,7 @@ typedef struct		s_fld
 {
 	SDL_Surface		*s;
 	SDL_Texture		*tex;
-	SDL_Rect		rect[7];
+	SDL_Rect		rect[14];
 }					t_fld;
 
 typedef struct		s_menu

@@ -15,19 +15,28 @@ void		loadtexts(t_menu *m)
 	m->txt.color.r = 255;
 	m->txt.color.g = 255;
 	m->txt.color.b = 255;
-	//m->txt.color.a = 100;
 	m->txt.s[0] = TTF_RenderText_Solid(m->txt.font, "Rotation:", m->txt.color);
 	m->txt.s[1] = TTF_RenderText_Solid(m->txt.font, "X-axis", m->txt.color);
 	m->txt.s[2] = TTF_RenderText_Solid(m->txt.font, "Y-axis", m->txt.color);
 	m->txt.s[3] = TTF_RenderText_Solid(m->txt.font, "Z-axis", m->txt.color);
-	m->txt.s[4] = TTF_RenderText_Solid(m->txt.font, "+", m->txt.color);
-	m->txt.s[5] = TTF_RenderText_Solid(m->txt.font, "+", m->txt.color);
-	m->txt.s[6] = TTF_RenderText_Solid(m->txt.font, "+", m->txt.color);
+	m->txt.s[4] = TTF_RenderText_Solid(m->txt.font, "-", m->txt.color);
+	m->txt.s[5] = TTF_RenderText_Solid(m->txt.font, "-", m->txt.color);
+	m->txt.s[6] = TTF_RenderText_Solid(m->txt.font, "-", m->txt.color);
 	m->txt.s[7] = TTF_RenderText_Solid(m->txt.font, "-", m->txt.color);
-	m->txt.s[8] = TTF_RenderText_Solid(m->txt.font, "-", m->txt.color);
-	m->txt.s[9] = TTF_RenderText_Solid(m->txt.font, "-", m->txt.color);
+	m->txt.s[8] = TTF_RenderText_Solid(m->txt.font, "+", m->txt.color);
+	m->txt.s[9] = TTF_RenderText_Solid(m->txt.font, "+", m->txt.color);
+	m->txt.s[10] = TTF_RenderText_Solid(m->txt.font, "+", m->txt.color);
+	m->txt.s[11] = TTF_RenderText_Solid(m->txt.font, "+", m->txt.color);
+	m->txt.s[12] = TTF_RenderText_Solid(m->txt.font, "up", m->txt.color);
+	m->txt.s[13] = TTF_RenderText_Solid(m->txt.font, "left", m->txt.color);
+	m->txt.s[14] = TTF_RenderText_Solid(m->txt.font, "right", m->txt.color);
+	m->txt.s[15] = TTF_RenderText_Solid(m->txt.font, "down", m->txt.color);
+	m->txt.s[16] = TTF_RenderText_Solid(m->txt.font, "Zoom:", m->txt.color);
+	m->txt.s[17] = TTF_RenderText_Solid(m->txt.font, "Movements:", m->txt.color);
+	m->txt.s[18] = TTF_RenderText_Solid(m->txt.font, "Color filters:", m->txt.color);
+	m->txt.s[19] = TTF_RenderText_Solid(m->txt.font, "switch", m->txt.color);
 	i = -1;
-	while (++i < 10)
+	while (++i < 20)
 		m->txt.tex[i] = SDL_CreateTextureFromSurface(m->r, m->txt.s[i]);
 	m->txt.rect[0].x = 50;
 	m->txt.rect[0].y = 30;
@@ -45,18 +54,54 @@ void		loadtexts(t_menu *m)
 	}
 	i = 3;
 	t = 60;
-	while (++i < 7)
+	while (++i < 8)
 	{
-		m->txt.rect[i].x = 180;
+		m->txt.rect[i].x = 190;
 		m->txt.rect[i].y = t;
 		m->txt.rect[i].w = 25;
-		m->txt.rect[i].h = 30;
-		m->txt.rect[i + 3].x = 268;
-		m->txt.rect[i + 3].y = t;
-		m->txt.rect[i + 3].w = 25;
-		m->txt.rect[i + 3].h = 25;
+		m->txt.rect[i].h = 25;
+		m->txt.rect[i + 4].x = 278;
+		m->txt.rect[i + 4].y = t;
+		m->txt.rect[i + 4].w = 25;
+		m->txt.rect[i + 4].h = 30;
 		t = t + 40;
 	}
+	m->txt.rect[12].x = 222;
+	m->txt.rect[12].y = 220;
+	m->txt.rect[12].w = 50;
+	m->txt.rect[12].h = 25;
+	m->txt.rect[13].x = 175;
+	m->txt.rect[13].y = 260;
+	m->txt.rect[13].w = 50;
+	m->txt.rect[13].h = 25;
+	m->txt.rect[14].x = 265;
+	m->txt.rect[14].y = 260;
+	m->txt.rect[14].w = 60;
+	m->txt.rect[14].h = 25;
+	m->txt.rect[15].x = 222;
+	m->txt.rect[15].y = 300;
+	m->txt.rect[15].w = 50;
+	m->txt.rect[15].h = 25;
+
+	m->txt.rect[16].x = 50;
+	m->txt.rect[16].y = 180;
+	m->txt.rect[16].w = 100;
+	m->txt.rect[16].h = 30;
+
+	m->txt.rect[17].x = 50;
+	m->txt.rect[17].y = 220;
+	m->txt.rect[17].w = 150;
+	m->txt.rect[17].h = 30;
+
+	m->txt.rect[18].x = 50;
+	m->txt.rect[18].y = 340;
+	m->txt.rect[18].w = 150;
+	m->txt.rect[18].h = 30;
+	
+	m->txt.rect[19].x = 210;
+	m->txt.rect[19].y = 340;
+	m->txt.rect[19].w = 75;
+	m->txt.rect[19].h = 25;
 }
 
 void		fields(t_menu *m)
@@ -72,18 +117,41 @@ void		fields(t_menu *m)
 	m->f.rect[0].h = MHEIGHT - 40;
 	i = 0;
 	t = 60;
-	while (++i < 4)
+	while (++i < 5)
 	{
-		m->f.rect[i].x = 150;
+		m->f.rect[i].x = 160;
 		m->f.rect[i].y = t;
-		m->f.rect[i].w = 80;
+		m->f.rect[i].w = 85;
 		m->f.rect[i].h = 30;
-		m->f.rect[i + 3].x = 240;
-		m->f.rect[i + 3].y = t;
-		m->f.rect[i + 3].w = 80;
-		m->f.rect[i + 3].h = 30;
+		m->f.rect[i + 4].x = 250;
+		m->f.rect[i + 4].y = t;
+		m->f.rect[i + 4].w = 85;
+		m->f.rect[i + 4].h = 30;
 		t = t + 40;
 	}
+	m->f.rect[9].x = 205;
+	m->f.rect[9].y = 220;
+	m->f.rect[9].w = 85;
+	m->f.rect[9].h = 30;
+	m->f.rect[10].x = 160;
+	m->f.rect[10].y = 260;
+	m->f.rect[10].w = 85;
+	m->f.rect[10].h = 30;
+	m->f.rect[11].x = 250;
+	m->f.rect[11].y = 260;
+	m->f.rect[11].w = 85;
+	m->f.rect[11].h = 30;
+	m->f.rect[12].x = 205;
+	m->f.rect[12].y = 300;
+	m->f.rect[12].w = 85;
+	m->f.rect[12].h = 30;
+
+	m->f.rect[13].x = 205;
+	m->f.rect[13].y = 340;
+	m->f.rect[13].w = 85;
+	m->f.rect[13].h = 30;
+
+	printf("%d\n", t);
 }
 
 void		initializer(t_menu *m)
@@ -129,7 +197,7 @@ void		destructor(t_menu *m)
 	TTF_CloseFont(m->txt.font);
 	SDL_DestroyTexture(m->backgrnd.tex);
 	i = -1;
-	while (++i < 10)
+	while (++i < 20)
 	{
 		SDL_DestroyTexture(m->txt.tex[i]);
 		SDL_FreeSurface(m->txt.s[i]);
@@ -154,10 +222,10 @@ void			menu(void)
 		SDL_RenderClear(m.r);
 		SDL_RenderCopy(m.r, m.backgrnd.tex, NULL, &m.backgrnd.rect);
 		i = -1;
-		while (++i < 7)
+		while (++i < 14)
 			SDL_RenderCopy(m.r, m.f.tex, NULL, &m.f.rect[i]);
 		i = -1;
-		while (++i < 10)
+		while (++i < 20)
 			SDL_RenderCopy(m.r, m.txt.tex[i], NULL, &m.txt.rect[i]);
 		SDL_RenderPresent(m.r);
 	}
