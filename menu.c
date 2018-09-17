@@ -154,6 +154,22 @@ void		fields(t_menu *m)
 	printf("%d\n", t);
 }
 
+void		ft_sw(t_menu *m)
+{
+	int i;
+
+	m->slct.s = IMG_Load("m_images/transparent.png");
+	m->slct.tex = SDL_CreateTextureFromSurface(m->r, m->slct.s);
+	i = -1;
+	while (++i < 13)
+	{
+		m->slct.rect[i].x = m->f.rect[i + 1].x;
+		m->slct.rect[i].y = m->f.rect[i + 1].y;
+		m->slct.rect[i].w = m->f.rect[i + 1].w;
+		m->slct.rect[i].h = m->f.rect[i + 1].h; 
+	}
+}
+
 void		initializer(t_menu *m)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0 || TTF_Init() < 0)
@@ -172,7 +188,8 @@ void		initializer(t_menu *m)
 	m->backgrnd.rect.y = 0;
 	m->backgrnd.rect.w = MWIDTH;
 	m->backgrnd.rect.h = MHEIGHT;
-	fields(m);	
+	fields(m);
+	ft_sw(m);
 }
 
 void		menu_keys(t_menu *m)
@@ -202,6 +219,8 @@ void		destructor(t_menu *m)
 		SDL_DestroyTexture(m->txt.tex[i]);
 		SDL_FreeSurface(m->txt.s[i]);
 	}
+	SDL_FreeSurface(m->slct.s);
+	SDL_DestroyTexture(m->slct.tex);
 	SDL_DestroyTexture(m->f.tex);
 	SDL_FreeSurface(m->f.s);
 	SDL_FreeSurface(m->backgrnd.s);
@@ -227,6 +246,7 @@ void			menu(void)
 		i = -1;
 		while (++i < 20)
 			SDL_RenderCopy(m.r, m.txt.tex[i], NULL, &m.txt.rect[i]);
+		SDL_RenderCopy(m.r, m.slct.tex, NULL, &m.slct.rect[5]);
 		SDL_RenderPresent(m.r);
 	}
 	destructor(&m);
