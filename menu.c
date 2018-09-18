@@ -32,7 +32,7 @@ void		loadtexts(t_menu *m)
 	m->txt.s[14] = TTF_RenderText_Solid(m->txt.font, "right", m->txt.color);
 	m->txt.s[15] = TTF_RenderText_Solid(m->txt.font, "down", m->txt.color);
 	m->txt.s[16] = TTF_RenderText_Solid(m->txt.font, "Zoom:", m->txt.color);
-	m->txt.s[17] = TTF_RenderText_Solid(m->txt.font, "Movements:", m->txt.color);
+	m->txt.s[17] = TTF_RenderText_Solid(m->txt.font, "Move:", m->txt.color);
 	m->txt.s[18] = TTF_RenderText_Solid(m->txt.font, "Color filters:", m->txt.color);
 	m->txt.s[19] = TTF_RenderText_Solid(m->txt.font, "switch", m->txt.color);
 	i = -1;
@@ -40,7 +40,7 @@ void		loadtexts(t_menu *m)
 		m->txt.tex[i] = SDL_CreateTextureFromSurface(m->r, m->txt.s[i]);
 	m->txt.rect[0].x = 50;
 	m->txt.rect[0].y = 30;
-	m->txt.rect[0].w = 100;
+	m->txt.rect[0].w = 150;
 	m->txt.rect[0].h = 30;
 	i = 0;
 	t = 60;
@@ -66,9 +66,9 @@ void		loadtexts(t_menu *m)
 		m->txt.rect[i + 4].h = 30;
 		t = t + 40;
 	}
-	m->txt.rect[12].x = 222;
+	m->txt.rect[12].x = 233;
 	m->txt.rect[12].y = 220;
-	m->txt.rect[12].w = 50;
+	m->txt.rect[12].w = 30;
 	m->txt.rect[12].h = 25;
 	m->txt.rect[13].x = 175;
 	m->txt.rect[13].y = 260;
@@ -90,7 +90,7 @@ void		loadtexts(t_menu *m)
 
 	m->txt.rect[17].x = 50;
 	m->txt.rect[17].y = 220;
-	m->txt.rect[17].w = 150;
+	m->txt.rect[17].w = 100;
 	m->txt.rect[17].h = 30;
 
 	m->txt.rect[18].x = 50;
