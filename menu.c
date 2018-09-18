@@ -33,7 +33,7 @@ void		loadtexts(t_menu *m)
 	m->txt.s[15] = TTF_RenderText_Solid(m->txt.font, "down", m->txt.color);
 	m->txt.s[16] = TTF_RenderText_Solid(m->txt.font, "Zoom:", m->txt.color);
 	m->txt.s[17] = TTF_RenderText_Solid(m->txt.font, "Move:", m->txt.color);
-	m->txt.s[18] = TTF_RenderText_Solid(m->txt.font, "Color filters:", m->txt.color);
+	m->txt.s[18] = TTF_RenderText_Solid(m->txt.font, "Color gels:", m->txt.color);
 	m->txt.s[19] = TTF_RenderText_Solid(m->txt.font, "switch", m->txt.color);
 	i = -1;
 	while (++i < 20)
@@ -46,9 +46,9 @@ void		loadtexts(t_menu *m)
 	t = 60;
 	while (++i < 4)
 	{
-		m->txt.rect[i].x = 50;
+		m->txt.rect[i].x = 75;
 		m->txt.rect[i].y = t;
-		m->txt.rect[i].w = 80;
+		m->txt.rect[i].w = 75;
 		m->txt.rect[i].h = 25;
 		t = t + 40;
 	}
@@ -71,13 +71,13 @@ void		loadtexts(t_menu *m)
 	m->txt.rect[12].w = 30;
 	m->txt.rect[12].h = 25;
 	m->txt.rect[13].x = 175;
-	m->txt.rect[13].y = 260;
-	m->txt.rect[13].w = 50;
-	m->txt.rect[13].h = 25;
+	m->txt.rect[13].y = 266;
+	m->txt.rect[13].w = 45;
+	m->txt.rect[13].h = 20;
 	m->txt.rect[14].x = 265;
-	m->txt.rect[14].y = 260;
-	m->txt.rect[14].w = 60;
-	m->txt.rect[14].h = 25;
+	m->txt.rect[14].y = 266;
+	m->txt.rect[14].w = 50;
+	m->txt.rect[14].h = 20;
 	m->txt.rect[15].x = 222;
 	m->txt.rect[15].y = 300;
 	m->txt.rect[15].w = 50;
@@ -98,10 +98,10 @@ void		loadtexts(t_menu *m)
 	m->txt.rect[18].w = 150;
 	m->txt.rect[18].h = 30;
 	
-	m->txt.rect[19].x = 210;
-	m->txt.rect[19].y = 340;
-	m->txt.rect[19].w = 75;
-	m->txt.rect[19].h = 25;
+	m->txt.rect[19].x = 220;
+	m->txt.rect[19].y = 345;
+	m->txt.rect[19].w = 55;
+	m->txt.rect[19].h = 20;
 }
 
 void		fields(t_menu *m)
