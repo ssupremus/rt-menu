@@ -225,6 +225,8 @@ void		menu_motion(t_menu *m)
 		m->sw = 11;
 	else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 340 && m->e.motion.y < 370)
 		m->sw = 12;
+	else
+		m->sw = -1;
 }
 
 void		event_listener(t_menu *m)
