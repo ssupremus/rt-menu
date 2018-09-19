@@ -32,7 +32,7 @@ typedef struct		s_fld
 {
 	SDL_Surface		*s;
 	SDL_Texture		*tex;
-	SDL_Rect		rect[14];
+	SDL_Rect		rect[16];
 }					t_fld;
 
 typedef struct		s_sw
@@ -46,6 +46,7 @@ typedef struct		s_menu
 {
 	SDL_Window		*w;
 	SDL_Renderer	*r;
+	Uint32			wid;
 	t_back			backgrnd;
 	t_mtext			txt;
 	t_fld			f;

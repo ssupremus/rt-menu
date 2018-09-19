@@ -141,15 +141,18 @@ void		fields(t_menu *m)
 	m->f.rect[11].y = 260;
 	m->f.rect[11].w = 85;
 	m->f.rect[11].h = 30;
-	m->f.rect[12].x = 205;
-	m->f.rect[12].y = 300;
-	m->f.rect[12].w = 85;
-	m->f.rect[12].h = 30;
-
-	m->f.rect[13].x = 205;
-	m->f.rect[13].y = 340;
-	m->f.rect[13].w = 85;
-	m->f.rect[13].h = 30;
+	i = 8;
+	t = 220;
+	while (++i < 16)
+	{
+		i =
+		m->f.rect[i].x 
+		m->f.rect[i].x = 205;
+		m->f.rect[i].y = t;
+		m->f.rect[i].w = 85;
+		m->f.rect[i].h = 30;
+		t += 40;	
+	}
 }
 
 void		ft_sw(t_menu *m)
@@ -177,6 +180,7 @@ void		initializer(t_menu *m)
 	}
 	m->w = SDL_CreateWindow("RT - Menu", 0, 0, MWIDTH, MHEIGHT, SDL_WINDOW_SHOWN);
 	m->r = SDL_CreateRenderer(m->w, -1, SDL_RENDERER_ACCELERATED);
+	m->wid = SDL_GetWindowID(m->w);
 	m->quit = 0;
 	m->sw = -1;
 	m->backgrnd.s = IMG_Load("m_images/blue_rect.png");
@@ -229,14 +233,47 @@ void		menu_motion(t_menu *m)
 		m->sw = -1;
 }
 
+void		menu_mouse(t_menu *m)
+{
+	static int i = 1;
+	if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 60 && m->e.button.y < 90)
+		printf("%d\n", i++);
+	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 100 && m->e.button.y < 130)
+		printf("%d\n", i++);
+	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 140 && m->e.button.y < 170)
+		printf("%d\n", i++);
+	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 180 && m->e.button.y < 210)
+		printf("%d\n", i++);
+	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 60 && m->e.button.y < 90)
+		printf("%d\n", i++);
+	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 100 && m->e.button.y < 130)
+		printf("%d\n", i++);
+	else if (m->e.button.x > 250 && m->e.button.x < 335&& m->e.button.y > 140 && m->e.button.y < 170)
+		printf("%d\n", i++);
+	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 180 && m->e.button.y < 210)
+		printf("%d\n", i++);
+	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 220 && m->e.button.y < 250)
+		printf("%d\n", i++);
+	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 260 && m->e.button.y < 290)
+		printf("%d\n", i++);
+	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 260 && m->e.button.y < 290)
+		printf("%d\n", i++);
+	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 300 && m->e.button.y < 330)
+		printf("%d\n", i++);
+	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 340 && m->e.button.y < 370)
+		printf("%d\n", i++);
+}
+
 void		event_listener(t_menu *m)
 {
 	if (m->e.type == SDL_QUIT)
 		m->quit = 1;
-	else if (m->e.type == SDL_KEYDOWN)
+	else if (m->e.type == SDL_KEYDOWN && m->e.key.windowID == m->wid)
 		menu_keys(m);
-	else if (m->e.type == SDL_MOUSEMOTION)
+	else if (m->e.type == SDL_MOUSEMOTION && m->e.motion.windowID == m->wid)
 		menu_motion(m);
+	else if (m->e.type == SDL_MOUSEBUTTONUP && m->e.button.windowID == m->wid)
+		menu_mouse(m);
 }
 
 void		destructor(t_menu *m)
@@ -273,7 +310,7 @@ void			menu(void)
 		SDL_RenderClear(m.r);
 		SDL_RenderCopy(m.r, m.backgrnd.tex, NULL, &m.backgrnd.rect);
 		i = -1;
-		while (++i < 14)
+		while (++i < 16)
 			SDL_RenderCopy(m.r, m.f.tex, NULL, &m.f.rect[i]);
 		i = -1;
 		while (++i < 20)
@@ -285,6 +322,7 @@ void			menu(void)
 	destructor(&m);
 	TTF_Quit();
 	SDL_Quit();
+	system("leaks menu");
 }
 
 int		main(void)
