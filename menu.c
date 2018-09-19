@@ -129,25 +129,19 @@ void		fields(t_menu *m)
 		m->f.rect[i + 4].h = 30;
 		t = t + 40;
 	}
-	m->f.rect[9].x = 205;
-	m->f.rect[9].y = 220;
-	m->f.rect[9].w = 85;
-	m->f.rect[9].h = 30;
-	m->f.rect[10].x = 160;
-	m->f.rect[10].y = 260;
-	m->f.rect[10].w = 85;
-	m->f.rect[10].h = 30;
-	m->f.rect[11].x = 250;
-	m->f.rect[11].y = 260;
-	m->f.rect[11].w = 85;
-	m->f.rect[11].h = 30;
 	i = 8;
 	t = 220;
 	while (++i < 16)
 	{
-		i =
-		m->f.rect[i].x 
-		m->f.rect[i].x = 205;
+		if (i == 10)
+			m->f.rect[i].x = 160;
+		else if (i == 11)
+		{
+			t -= 40;
+			m->f.rect[i].x = 250;
+		}
+		else
+			m->f.rect[i].x = 205;
 		m->f.rect[i].y = t;
 		m->f.rect[i].w = 85;
 		m->f.rect[i].h = 30;
@@ -162,7 +156,7 @@ void		ft_sw(t_menu *m)
 	m->slct.s = IMG_Load("m_images/transparent.png");
 	m->slct.tex = SDL_CreateTextureFromSurface(m->r, m->slct.s);
 	i = -1;
-	while (++i < 13)
+	while (++i < 16)
 	{
 		m->slct.rect[i].x = m->f.rect[i + 1].x;
 		m->slct.rect[i].y = m->f.rect[i + 1].y;
@@ -229,6 +223,12 @@ void		menu_motion(t_menu *m)
 		m->sw = 11;
 	else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 340 && m->e.motion.y < 370)
 		m->sw = 12;
+	else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 380 && m->e.motion.y < 410)
+		m->sw = 13;
+	else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 420 && m->e.motion.y < 450)
+		m->sw = 14;
+	//else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 340 && m->e.motion.y < 370)
+	//	m->sw = 15;
 	else
 		m->sw = -1;
 }

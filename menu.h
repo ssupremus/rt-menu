@@ -4,13 +4,12 @@
 # define MHEIGHT 1300
 # include <unistd.h>
 # include <SDL2/SDL.h>
-//# include <SDL2/SDL_image.h>
-//# include <SDL2/SDL_ttf.h>
-//# include <SDL2/SDL_mixer.h>
-# include "SDL_image.h"
-# include "SDL_mixer.h"
-# include "SDL_ttf.h"
-
+# include <SDL2/SDL_image.h>
+# include <SDL2/SDL_ttf.h>
+# include <SDL2/SDL_mixer.h>
+//# include "SDL_image.h"
+//# include "SDL_mixer.h"
+//# include "SDL_ttf.h"
 
 typedef struct 		s_mtext
 {
@@ -39,7 +38,7 @@ typedef struct		s_sw
 {
 	SDL_Surface		*s;
 	SDL_Texture		*tex;
-	SDL_Rect		rect[13];
+	SDL_Rect		rect[15];
 }					t_sw;
 
 typedef struct		s_menu
