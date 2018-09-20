@@ -1,1 +1,1 @@
-gcc -Wall -Werror -Wextra -o menu menu.c `sdl2-config --cflags --libs` -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
+gcc -Wall -Werror -Wextra -o menu menu.c m_loadtexts.c menu_controls.c `sdl2-config --cflags --libs` -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
