@@ -1,108 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   menu.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ysushkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/20 13:48:37 by ysushkov          #+#    #+#             */
+/*   Updated: 2018/09/20 13:48:41 by ysushkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "menu.h"
-#include <stdio.h>
-
-void		loadtexts(t_menu *m)
-{
-	int i;
-	int t;
-
-	m->txt.font = TTF_OpenFont("m_fonts/opensans.ttf", 50);
-	if (m->txt.font == NULL)
-	{
-		write(1, "Font error\n", 11);
-		exit(1);
-	}
-	m->txt.color.r = 255;
-	m->txt.color.g = 255;
-	m->txt.color.b = 255;
-	m->txt.s[0] = TTF_RenderText_Solid(m->txt.font, "Rotation:", m->txt.color);
-	m->txt.s[1] = TTF_RenderText_Solid(m->txt.font, "X-axis", m->txt.color);
-	m->txt.s[2] = TTF_RenderText_Solid(m->txt.font, "Y-axis", m->txt.color);
-	m->txt.s[3] = TTF_RenderText_Solid(m->txt.font, "Z-axis", m->txt.color);
-	m->txt.s[4] = TTF_RenderText_Solid(m->txt.font, "-", m->txt.color);
-	m->txt.s[5] = TTF_RenderText_Solid(m->txt.font, "-", m->txt.color);
-	m->txt.s[6] = TTF_RenderText_Solid(m->txt.font, "-", m->txt.color);
-	m->txt.s[7] = TTF_RenderText_Solid(m->txt.font, "-", m->txt.color);
-	m->txt.s[8] = TTF_RenderText_Solid(m->txt.font, "+", m->txt.color);
-	m->txt.s[9] = TTF_RenderText_Solid(m->txt.font, "+", m->txt.color);
-	m->txt.s[10] = TTF_RenderText_Solid(m->txt.font, "+", m->txt.color);
-	m->txt.s[11] = TTF_RenderText_Solid(m->txt.font, "+", m->txt.color);
-	m->txt.s[12] = TTF_RenderText_Solid(m->txt.font, "up", m->txt.color);
-	m->txt.s[13] = TTF_RenderText_Solid(m->txt.font, "left", m->txt.color);
-	m->txt.s[14] = TTF_RenderText_Solid(m->txt.font, "right", m->txt.color);
-	m->txt.s[15] = TTF_RenderText_Solid(m->txt.font, "down", m->txt.color);
-	m->txt.s[16] = TTF_RenderText_Solid(m->txt.font, "Zoom:", m->txt.color);
-	m->txt.s[17] = TTF_RenderText_Solid(m->txt.font, "Move:", m->txt.color);
-	m->txt.s[18] = TTF_RenderText_Solid(m->txt.font, "Color gels:", m->txt.color);
-	m->txt.s[19] = TTF_RenderText_Solid(m->txt.font, "switch", m->txt.color);
-	i = -1;
-	while (++i < 20)
-		m->txt.tex[i] = SDL_CreateTextureFromSurface(m->r, m->txt.s[i]);
-	m->txt.rect[0].x = 50;
-	m->txt.rect[0].y = 30;
-	m->txt.rect[0].w = 150;
-	m->txt.rect[0].h = 30;
-	i = 0;
-	t = 60;
-	while (++i < 4)
-	{
-		m->txt.rect[i].x = 75;
-		m->txt.rect[i].y = t;
-		m->txt.rect[i].w = 75;
-		m->txt.rect[i].h = 25;
-		t = t + 40;
-	}
-	i = 3;
-	t = 60;
-	while (++i < 8)
-	{
-		m->txt.rect[i].x = 190;
-		m->txt.rect[i].y = t;
-		m->txt.rect[i].w = 25;
-		m->txt.rect[i].h = 25;
-		m->txt.rect[i + 4].x = 278;
-		m->txt.rect[i + 4].y = t;
-		m->txt.rect[i + 4].w = 25;
-		m->txt.rect[i + 4].h = 30;
-		t = t + 40;
-	}
-	m->txt.rect[12].x = 233;
-	m->txt.rect[12].y = 220;
-	m->txt.rect[12].w = 30;
-	m->txt.rect[12].h = 25;
-	m->txt.rect[13].x = 175;
-	m->txt.rect[13].y = 266;
-	m->txt.rect[13].w = 45;
-	m->txt.rect[13].h = 20;
-	m->txt.rect[14].x = 265;
-	m->txt.rect[14].y = 266;
-	m->txt.rect[14].w = 50;
-	m->txt.rect[14].h = 20;
-	m->txt.rect[15].x = 222;
-	m->txt.rect[15].y = 300;
-	m->txt.rect[15].w = 50;
-	m->txt.rect[15].h = 25;
-
-	m->txt.rect[16].x = 50;
-	m->txt.rect[16].y = 180;
-	m->txt.rect[16].w = 100;
-	m->txt.rect[16].h = 30;
-
-	m->txt.rect[17].x = 50;
-	m->txt.rect[17].y = 220;
-	m->txt.rect[17].w = 100;
-	m->txt.rect[17].h = 30;
-
-	m->txt.rect[18].x = 50;
-	m->txt.rect[18].y = 340;
-	m->txt.rect[18].w = 150;
-	m->txt.rect[18].h = 30;
-	
-	m->txt.rect[19].x = 220;
-	m->txt.rect[19].y = 345;
-	m->txt.rect[19].w = 55;
-	m->txt.rect[19].h = 20;
-}
 
 void		fields(t_menu *m)
 {
@@ -179,89 +87,13 @@ void		initializer(t_menu *m)
 	m->sw = -1;
 	m->backgrnd.s = IMG_Load("m_images/blue_rect.png");
 	m->backgrnd.tex = SDL_CreateTextureFromSurface(m->r, m->backgrnd.s);
-	loadtexts(m);
+	m_loadtexts(m);
 	m->backgrnd.rect.x = 0;
 	m->backgrnd.rect.y = 0;
 	m->backgrnd.rect.w = MWIDTH;
 	m->backgrnd.rect.h = MHEIGHT;
 	fields(m);
 	ft_sw(m);
-}
-
-void		menu_keys(t_menu *m)
-{
-	m->keystate = SDL_GetKeyboardState(NULL);
-	if (m->keystate[SDL_SCANCODE_ESCAPE])
-			m->quit = 1;
-}
-
-void		menu_motion(t_menu *m)
-{
-	if (m->e.motion.x > 160 && m->e.motion.x < 245 && m->e.motion.y > 60 && m->e.motion.y < 90)
-		m->sw = 0;
-	else if (m->e.motion.x > 160 && m->e.motion.x < 245 && m->e.motion.y > 100 && m->e.motion.y < 130)
-		m->sw = 1;
-	else if (m->e.motion.x > 160 && m->e.motion.x < 245 && m->e.motion.y > 140 && m->e.motion.y < 170)
-		m->sw = 2;
-	else if (m->e.motion.x > 160 && m->e.motion.x < 245 && m->e.motion.y > 180 && m->e.motion.y < 210)
-		m->sw = 3;
-	else if (m->e.motion.x > 250 && m->e.motion.x < 335 && m->e.motion.y > 60 && m->e.motion.y < 90)
-		m->sw = 4;
-	else if (m->e.motion.x > 250 && m->e.motion.x < 335 && m->e.motion.y > 100 && m->e.motion.y < 130)
-		m->sw = 5;
-	else if (m->e.motion.x > 250 && m->e.motion.x < 335&& m->e.motion.y > 140 && m->e.motion.y < 170)
-		m->sw = 6;
-	else if (m->e.motion.x > 250 && m->e.motion.x < 335 && m->e.motion.y > 180 && m->e.motion.y < 210)
-		m->sw = 7;
-	else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 220 && m->e.motion.y < 250)
-		m->sw = 8;
-	else if (m->e.motion.x > 160 && m->e.motion.x < 245 && m->e.motion.y > 260 && m->e.motion.y < 290)
-		m->sw = 9;
-	else if (m->e.motion.x > 250 && m->e.motion.x < 335 && m->e.motion.y > 260 && m->e.motion.y < 290)
-		m->sw = 10;
-	else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 300 && m->e.motion.y < 330)
-		m->sw = 11;
-	else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 340 && m->e.motion.y < 370)
-		m->sw = 12;
-	else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 380 && m->e.motion.y < 410)
-		m->sw = 13;
-	else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 420 && m->e.motion.y < 450)
-		m->sw = 14;
-	//else if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 340 && m->e.motion.y < 370)
-	//	m->sw = 15;
-	else
-		m->sw = -1;
-}
-
-void		menu_mouse(t_menu *m)
-{
-	static int i = 1;
-	if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 60 && m->e.button.y < 90)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 100 && m->e.button.y < 130)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 140 && m->e.button.y < 170)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 180 && m->e.button.y < 210)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 60 && m->e.button.y < 90)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 100 && m->e.button.y < 130)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 250 && m->e.button.x < 335&& m->e.button.y > 140 && m->e.button.y < 170)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 180 && m->e.button.y < 210)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 220 && m->e.button.y < 250)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 260 && m->e.button.y < 290)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 260 && m->e.button.y < 290)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 300 && m->e.button.y < 330)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 340 && m->e.button.y < 370)
-		printf("%d\n", i++);
 }
 
 void		event_listener(t_menu *m)
@@ -283,7 +115,7 @@ void		destructor(t_menu *m)
 	TTF_CloseFont(m->txt.font);
 	SDL_DestroyTexture(m->backgrnd.tex);
 	i = -1;
-	while (++i < 20)
+	while (++i < 22)
 	{
 		SDL_DestroyTexture(m->txt.tex[i]);
 		SDL_FreeSurface(m->txt.s[i]);
@@ -313,7 +145,7 @@ void			menu(void)
 		while (++i < 16)
 			SDL_RenderCopy(m.r, m.f.tex, NULL, &m.f.rect[i]);
 		i = -1;
-		while (++i < 20)
+		while (++i < 22)
 			SDL_RenderCopy(m.r, m.txt.tex[i], NULL, &m.txt.rect[i]);
 		if (m.sw >= 0)
 			SDL_RenderCopy(m.r, m.slct.tex, NULL, &m.slct.rect[m.sw]);
