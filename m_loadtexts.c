@@ -12,7 +12,7 @@
 
 #include "menu.h"
 
-void		m_text_surf(t_menu *m)
+static void		m_text_surf(t_menu *m)
 {
 	m->txt.s[0] = TTF_RenderText_Solid(m->txt.font, "Rotation:", m->txt.color);
 	m->txt.s[1] = TTF_RenderText_Solid(m->txt.font, "X-axis", m->txt.color);
@@ -40,7 +40,7 @@ void		m_text_surf(t_menu *m)
 	m->txt.s[21] = TTF_RenderText_Solid(m->txt.font, "Exit RT:", m->txt.color);
 }
 
-void		m_text_rect1(t_menu *m, int i, int *t)
+static void		m_text_rect1(t_menu *m, int i, int *t)
 {
 	i = 0;
 	*t = 60;
@@ -68,7 +68,7 @@ void		m_text_rect1(t_menu *m, int i, int *t)
 	}
 }
 
-void		m_text_rect2(t_menu *m)
+static void		m_text_rect2(t_menu *m)
 {
 	m->txt.rect[12].x = 233;
 	m->txt.rect[12].y = 220;
@@ -96,7 +96,7 @@ void		m_text_rect2(t_menu *m)
 	m->txt.rect[17].h = 30;
 }
 
-void		m_text_rect3(t_menu *m)
+static void		m_text_rect3(t_menu *m)
 {
 	m->txt.rect[18].x = 50;
 	m->txt.rect[18].y = 340;
@@ -116,7 +116,7 @@ void		m_text_rect3(t_menu *m)
 	m->txt.rect[21].h = 30;
 }
 
-void		m_loadtexts(t_menu *m)
+void			m_loadtexts(t_menu *m)
 {
 	int i;
 	int t;

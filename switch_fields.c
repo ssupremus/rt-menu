@@ -12,7 +12,7 @@
 
 #include "menu.h"
 
-void		fields_enlarge(t_menu *m)
+static void		fields_enlarge(t_menu *m)
 {
 	int i;
 	int t;
@@ -37,7 +37,7 @@ void		fields_enlarge(t_menu *m)
 	}
 }
 
-void		fields(t_menu *m)
+void			fields(t_menu *m)
 {
 	int i;
 	int t;
@@ -65,7 +65,7 @@ void		fields(t_menu *m)
 	fields_enlarge(m);
 }
 
-void		ft_sw(t_menu *m)
+void			ft_sw(t_menu *m)
 {
 	int i;
 
@@ -81,7 +81,7 @@ void		ft_sw(t_menu *m)
 	}
 }
 
-void		menu_keys(t_menu *m)
+void			menu_keys(t_menu *m)
 {
 	m->keystate = SDL_GetKeyboardState(NULL);
 	if (m->keystate[SDL_SCANCODE_ESCAPE])

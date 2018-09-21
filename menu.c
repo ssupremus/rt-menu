@@ -12,7 +12,7 @@
 
 #include "menu.h"
 
-void			initializer(t_menu *m)
+static void			initializer(t_menu *m)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0 || TTF_Init() < 0)
 	{
@@ -36,7 +36,7 @@ void			initializer(t_menu *m)
 	ft_sw(m);
 }
 
-void			event_listener(t_menu *m)
+static void			event_listener(t_menu *m)
 {
 	if (m->e.type == SDL_QUIT)
 		m->quit = 1;
@@ -48,7 +48,7 @@ void			event_listener(t_menu *m)
 		menu_mouse(m);
 }
 
-void			destructor(t_menu *m)
+static void			destructor(t_menu *m)
 {
 	int i;
 
@@ -69,7 +69,7 @@ void			destructor(t_menu *m)
 	SDL_DestroyWindow(m->w);
 }
 
-void			menu(void)
+void				menu(void)
 {
 	t_menu	m;
 	int		i;
@@ -97,7 +97,7 @@ void			menu(void)
 	system("leaks menu");
 }
 
-int				main(void)
+int					main(void)
 {
 	menu();
 	return (0);

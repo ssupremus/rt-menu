@@ -13,7 +13,7 @@
 #include "menu.h"
 #include <stdio.h>
 
-void		motion_enlarge2(t_menu *m)
+static void		motion_enlarge2(t_menu *m)
 {
 	if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 420
 		&& m->e.motion.y < 450)
@@ -22,7 +22,7 @@ void		motion_enlarge2(t_menu *m)
 		m->sw = -1;
 }
 
-void		motion_enlarge1(t_menu *m)
+static void		motion_enlarge1(t_menu *m)
 {
 	if (m->e.motion.x > 250 && m->e.motion.x < 335 && m->e.motion.y > 180
 		&& m->e.motion.y < 210)
@@ -49,7 +49,7 @@ void		motion_enlarge1(t_menu *m)
 		motion_enlarge2(m);
 }
 
-void		menu_motion(t_menu *m)
+void			menu_motion(t_menu *m)
 {
 	if (m->e.motion.x > 160 && m->e.motion.x < 245 && m->e.motion.y > 60
 		&& m->e.motion.y < 90)
@@ -76,7 +76,7 @@ void		menu_motion(t_menu *m)
 		motion_enlarge1(m);
 }
 
-void		mouse_enlarge1(t_menu *m)
+static void		mouse_enlarge1(t_menu *m)
 {
 	if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 180
 		&& m->e.button.y < 210)
@@ -104,7 +104,7 @@ void		mouse_enlarge1(t_menu *m)
 		printf("%d\n", m->sw);
 }
 
-void		menu_mouse(t_menu *m)
+void			menu_mouse(t_menu *m)
 {
 	if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 60
 		&& m->e.button.y < 90)
