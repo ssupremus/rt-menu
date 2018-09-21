@@ -18,15 +18,15 @@
 # include <unistd.h>
 # include <SDL2/SDL.h>
 
-#ifdef __APPLE__
-# include "SDL_image.h"
-# include "SDL_mixer.h"
-# include "SDL_ttf.h"
-#elif __linux__
-# include <SDL2/SDL_image.h>
-# include <SDL2/SDL_ttf.h>
-# include <SDL2/SDL_mixer.h>
-#endif
+# ifdef __APPLE__
+#  include "SDL_image.h"
+#  include "SDL_mixer.h"
+#  include "SDL_ttf.h"
+# elif __linux__
+#  include <SDL2/SDL_image.h>
+#  include <SDL2/SDL_ttf.h>
+#  include <SDL2/SDL_mixer.h>
+# endif
 
 typedef struct		s_mtext
 {
@@ -58,6 +58,13 @@ typedef struct		s_sw
 	SDL_Rect		rect[15];
 }					t_sw;
 
+typedef struct		s_mimg
+{
+	SDL_Surface		*sf;
+	SDL_Texture		*tex;
+	SDL_Rect		rect;
+}					t_mimg;
+
 typedef struct		s_menu
 {
 	SDL_Window		*w;
@@ -67,12 +74,14 @@ typedef struct		s_menu
 	t_mtext			txt;
 	t_fld			f;
 	t_sw			slct;
+	t_mimg			ph;
 	SDL_Event		e;
 	int				quit;
 	int				sw;
 	const Uint8		*keystate;
 }					t_menu;
 
+void				m_img_read(t_menu *m);
 void				menu_keys(t_menu *m);
 void				menu_motion(t_menu *m);
 void				menu_mouse(t_menu *m);

@@ -42,7 +42,6 @@ void			fields(t_menu *m)
 	int i;
 	int t;
 
-	m->f.s = IMG_Load("m_images/50.png");
 	m->f.tex = SDL_CreateTextureFromSurface(m->r, m->f.s);
 	m->f.rect[0].x = 20;
 	m->f.rect[0].y = 20;
@@ -69,15 +68,15 @@ void			ft_sw(t_menu *m)
 {
 	int i;
 
-	m->slct.s = IMG_Load("m_images/transparent.png");
 	m->slct.tex = SDL_CreateTextureFromSurface(m->r, m->slct.s);
-	i = -1;
-	while (++i < 16)
+	i = 0;
+	while (i < 15)
 	{
 		m->slct.rect[i].x = m->f.rect[i + 1].x;
 		m->slct.rect[i].y = m->f.rect[i + 1].y;
 		m->slct.rect[i].w = m->f.rect[i + 1].w;
 		m->slct.rect[i].h = m->f.rect[i + 1].h;
+		i++;
 	}
 }
 

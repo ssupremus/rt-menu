@@ -12,7 +12,7 @@
 
 NAME	:=	menu
 
-SRC		:= menu.c m_loadtexts.c menu_controls.c switch_fields.c
+SRC		:= menu.c m_loadtexts.c menu_controls.c switch_fields.c m_img_read.c
 
 OBJ		:= $(SRC:.c=.o)
 

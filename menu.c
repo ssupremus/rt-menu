@@ -25,15 +25,20 @@ static void			initializer(t_menu *m)
 	m->wid = SDL_GetWindowID(m->w);
 	m->quit = 0;
 	m->sw = -1;
-	m->backgrnd.s = IMG_Load("m_images/blue_rect.png");
-	m->backgrnd.tex = SDL_CreateTextureFromSurface(m->r, m->backgrnd.s);
 	m_loadtexts(m);
+	m_img_read(m);
+	m->backgrnd.tex = SDL_CreateTextureFromSurface(m->r, m->backgrnd.s);
 	m->backgrnd.rect.x = 0;
 	m->backgrnd.rect.y = 0;
 	m->backgrnd.rect.w = MWIDTH;
 	m->backgrnd.rect.h = MHEIGHT;
 	fields(m);
 	ft_sw(m);
+	m->ph.tex = SDL_CreateTextureFromSurface(m->r, m->ph.sf);
+	m->ph.rect.x = 220;
+	m->ph.rect.y = 382;
+	m->ph.rect.w = 50;
+	m->ph.rect.h = 25;
 }
 
 static void			event_listener(t_menu *m)
@@ -60,6 +65,8 @@ static void			destructor(t_menu *m)
 		SDL_DestroyTexture(m->txt.tex[i]);
 		SDL_FreeSurface(m->txt.s[i]);
 	}
+	SDL_DestroyTexture(m->ph.tex);
+	SDL_FreeSurface(m->ph.sf);
 	SDL_FreeSurface(m->slct.s);
 	SDL_DestroyTexture(m->slct.tex);
 	SDL_DestroyTexture(m->f.tex);
@@ -67,6 +74,8 @@ static void			destructor(t_menu *m)
 	SDL_FreeSurface(m->backgrnd.s);
 	SDL_DestroyRenderer(m->r);
 	SDL_DestroyWindow(m->w);
+	TTF_Quit();
+	SDL_Quit();
 }
 
 void				menu(void)
@@ -87,13 +96,12 @@ void				menu(void)
 		i = -1;
 		while (++i < 22)
 			SDL_RenderCopy(m.r, m.txt.tex[i], NULL, &m.txt.rect[i]);
+		SDL_RenderCopy(m.r, m.ph.tex, NULL, &m.ph.rect);
 		if (m.sw >= 0)
 			SDL_RenderCopy(m.r, m.slct.tex, NULL, &m.slct.rect[m.sw]);
 		SDL_RenderPresent(m.r);
 	}
 	destructor(&m);
-	TTF_Quit();
-	SDL_Quit();
 	system("leaks menu");
 }
 

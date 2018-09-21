@@ -112,7 +112,7 @@ static void		m_text_rect3(t_menu *m)
 	m->txt.rect[20].h = 30;
 	m->txt.rect[21].x = 50;
 	m->txt.rect[21].y = 420;
-	m->txt.rect[21].w = 150;
+	m->txt.rect[21].w = 100;
 	m->txt.rect[21].h = 30;
 }
 
@@ -125,6 +125,8 @@ void			m_loadtexts(t_menu *m)
 	if (m->txt.font == NULL)
 	{
 		write(1, "Font error\n", 11);
+		SDL_DestroyRenderer(m->r);
+		SDL_DestroyWindow(m->w);
 		exit(1);
 	}
 	m->txt.color.r = 255;
