@@ -22,6 +22,7 @@
 # include "SDL_ttf.h"
 
 /*
+** If you need to compile the program on linux, use these includes instead:
 ** # include <SDL2/SDL_image.h>
 ** # include <SDL2/SDL_ttf.h>
 ** # include <SDL2/SDL_mixer.h>
