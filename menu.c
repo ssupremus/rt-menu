@@ -12,75 +12,15 @@
 
 #include "menu.h"
 
-void		fields(t_menu *m)
-{
-	int i;
-	int t;
-
-	m->f.s = IMG_Load("m_images/50.png");
-	m->f.tex = SDL_CreateTextureFromSurface(m->r, m->f.s);
-	m->f.rect[0].x = 20;
-	m->f.rect[0].y = 20;
-	m->f.rect[0].w = MWIDTH - 40;
-	m->f.rect[0].h = MHEIGHT - 40;
-	i = 0;
-	t = 60;
-	while (++i < 5)
-	{
-		m->f.rect[i].x = 160;
-		m->f.rect[i].y = t;
-		m->f.rect[i].w = 85;
-		m->f.rect[i].h = 30;
-		m->f.rect[i + 4].x = 250;
-		m->f.rect[i + 4].y = t;
-		m->f.rect[i + 4].w = 85;
-		m->f.rect[i + 4].h = 30;
-		t = t + 40;
-	}
-	i = 8;
-	t = 220;
-	while (++i < 16)
-	{
-		if (i == 10)
-			m->f.rect[i].x = 160;
-		else if (i == 11)
-		{
-			t -= 40;
-			m->f.rect[i].x = 250;
-		}
-		else
-			m->f.rect[i].x = 205;
-		m->f.rect[i].y = t;
-		m->f.rect[i].w = 85;
-		m->f.rect[i].h = 30;
-		t += 40;	
-	}
-}
-
-void		ft_sw(t_menu *m)
-{
-	int i;
-
-	m->slct.s = IMG_Load("m_images/transparent.png");
-	m->slct.tex = SDL_CreateTextureFromSurface(m->r, m->slct.s);
-	i = -1;
-	while (++i < 16)
-	{
-		m->slct.rect[i].x = m->f.rect[i + 1].x;
-		m->slct.rect[i].y = m->f.rect[i + 1].y;
-		m->slct.rect[i].w = m->f.rect[i + 1].w;
-		m->slct.rect[i].h = m->f.rect[i + 1].h; 
-	}
-}
-
-void		initializer(t_menu *m)
+void			initializer(t_menu *m)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0 || TTF_Init() < 0)
 	{
 		write(1, "Error\n", 1);
 		exit(1);
 	}
-	m->w = SDL_CreateWindow("RT - Menu", 0, 0, MWIDTH, MHEIGHT, SDL_WINDOW_SHOWN);
+	m->w = SDL_CreateWindow("RT - Menu", 0, 0, MWIDTH, MHEIGHT,
+		SDL_WINDOW_SHOWN);
 	m->r = SDL_CreateRenderer(m->w, -1, SDL_RENDERER_ACCELERATED);
 	m->wid = SDL_GetWindowID(m->w);
 	m->quit = 0;
@@ -96,7 +36,7 @@ void		initializer(t_menu *m)
 	ft_sw(m);
 }
 
-void		event_listener(t_menu *m)
+void			event_listener(t_menu *m)
 {
 	if (m->e.type == SDL_QUIT)
 		m->quit = 1;
@@ -108,7 +48,7 @@ void		event_listener(t_menu *m)
 		menu_mouse(m);
 }
 
-void		destructor(t_menu *m)
+void			destructor(t_menu *m)
 {
 	int i;
 
@@ -157,7 +97,7 @@ void			menu(void)
 	system("leaks menu");
 }
 
-int		main(void)
+int				main(void)
 {
 	menu();
 	return (0);

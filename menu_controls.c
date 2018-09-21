@@ -13,13 +13,6 @@
 #include "menu.h"
 #include <stdio.h>
 
-void		menu_keys(t_menu *m)
-{
-	m->keystate = SDL_GetKeyboardState(NULL);
-	if (m->keystate[SDL_SCANCODE_ESCAPE])
-		m->quit = 1;
-}
-
 void		motion_enlarge2(t_menu *m)
 {
 	if (m->e.motion.x > 205 && m->e.motion.x < 290 && m->e.motion.y > 420
@@ -83,53 +76,57 @@ void		menu_motion(t_menu *m)
 		motion_enlarge1(m);
 }
 
-void		menu_mouse(t_menu *m)
+void		mouse_enlarge1(t_menu *m)
 {
-	static int i = 1;
-
-	if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 60
-		&& m->e.button.y < 90)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 100
-		&& m->e.button.y < 130)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 140
-		&& m->e.button.y < 170)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 180
+	if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 180
 		&& m->e.button.y < 210)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 60
-		&& m->e.button.y < 90)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 100
-		&& m->e.button.y < 130)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 140
-		&& m->e.button.y < 170)
-		printf("%d\n", i++);
-	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 180
-		&& m->e.button.y < 210)
-		printf("%d\n", i++);
+		printf("%d\n", m->sw);
 	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 220
 		&& m->e.button.y < 250)
-		printf("%d\n", i++);
+		printf("%d\n", m->sw);
 	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 260
 		&& m->e.button.y < 290)
-		printf("%d\n", i++);
+		printf("%d\n", m->sw);
 	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 260
 		&& m->e.button.y < 290)
-		printf("%d\n", i++);
+		printf("%d\n", m->sw);
 	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 300
 		&& m->e.button.y < 330)
-		printf("%d\n", i++);
+		printf("%d\n", m->sw);
 	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 340
 		&& m->e.button.y < 370)
-		printf("%d\n", i++);
+		printf("%d\n", m->sw);
 	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 380
 		&& m->e.button.y < 410)
-		printf("%d\n", i++);
+		printf("%d\n", m->sw);
 	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 420
 		&& m->e.button.y < 450)
-		printf("%d\n", i++);
+		printf("%d\n", m->sw);
+}
+
+void		menu_mouse(t_menu *m)
+{
+	if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 60
+		&& m->e.button.y < 90)
+		printf("%d\n", m->sw);
+	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 100
+		&& m->e.button.y < 130)
+		printf("%d\n", m->sw);
+	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 140
+		&& m->e.button.y < 170)
+		printf("%d\n", m->sw);
+	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 180
+		&& m->e.button.y < 210)
+		printf("%d\n", m->sw);
+	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 60
+		&& m->e.button.y < 90)
+		printf("%d\n", m->sw);
+	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 100
+		&& m->e.button.y < 130)
+		printf("%d\n", m->sw);
+	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 140
+		&& m->e.button.y < 170)
+		printf("%d\n", m->sw);
+	else
+		mouse_enlarge1(m);
 }
