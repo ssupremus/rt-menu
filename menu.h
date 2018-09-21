@@ -17,16 +17,16 @@
 # define MHEIGHT 1300
 # include <unistd.h>
 # include <SDL2/SDL.h>
+
+#ifdef __APPLE__
 # include "SDL_image.h"
 # include "SDL_mixer.h"
 # include "SDL_ttf.h"
-
-/*
-** If you need to compile the program on linux, use these includes instead:
-** # include <SDL2/SDL_image.h>
-** # include <SDL2/SDL_ttf.h>
-** # include <SDL2/SDL_mixer.h>
-*/
+#elif __linux__
+# include <SDL2/SDL_image.h>
+# include <SDL2/SDL_ttf.h>
+# include <SDL2/SDL_mixer.h>
+#endif
 
 typedef struct		s_mtext
 {
