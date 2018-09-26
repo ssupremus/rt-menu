@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysushkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/20 15:34:04 by ysushkov          #+#    #+#             */
-/*   Updated: 2018/09/20 15:34:09 by ysushkov         ###   ########.fr       */
+/*   Created: 2018/09/25 12:42:42 by ysushkov          #+#    #+#             */
+/*   Updated: 2018/09/25 12:43:00 by ysushkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "menu.h"
-#include <stdio.h>
+#include "./includes/rt.h"
 
 static void		motion_enlarge2(t_menu *m)
 {
@@ -76,57 +75,57 @@ void			menu_motion(t_menu *m)
 		motion_enlarge1(m);
 }
 
-static void		mouse_enlarge1(t_menu *m)
+static void		mouse_enlarge1(t_menu *m, t_r *rtv, int *i, int *j)
 {
 	if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 180
 		&& m->e.button.y < 210)
-		printf("%d\n", m->sw);
+		zoom_on(rtv, 0);
 	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 220
 		&& m->e.button.y < 250)
-		printf("%d\n", m->sw);
+		dvig_up(rtv, 0);
 	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 260
 		&& m->e.button.y < 290)
-		printf("%d\n", m->sw);
+		dvig_left(rtv, 0);
 	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 260
 		&& m->e.button.y < 290)
-		printf("%d\n", m->sw);
+		dvig_right(rtv, 0);
 	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 300
 		&& m->e.button.y < 330)
-		printf("%d\n", m->sw);
+		dvig_down(rtv, 0);
 	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 340
 		&& m->e.button.y < 370)
-		printf("%d\n", m->sw);
+		efects(rtv, i);
 	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 380
 		&& m->e.button.y < 410)
-		printf("%d\n", m->sw);
+		screen(rtv);
 	else if (m->e.button.x > 205 && m->e.button.x < 290 && m->e.button.y > 420
 		&& m->e.button.y < 450)
-		printf("%d\n", m->sw);
+		pixels(rtv, j);
 }
 
-void			menu_mouse(t_menu *m)
+void			menu_mouse(t_menu *m, t_r *rtv, int *i, int *j)
 {
 	if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 60
 		&& m->e.button.y < 90)
-		printf("%d\n", m->sw);
+		dvig_left(rtv, 1);
 	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 100
 		&& m->e.button.y < 130)
-		printf("%d\n", m->sw);
+		dvig_down(rtv, 1);
 	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 140
 		&& m->e.button.y < 170)
-		printf("%d\n", m->sw);
+		zoom_of(rtv, 1);
 	else if (m->e.button.x > 160 && m->e.button.x < 245 && m->e.button.y > 180
 		&& m->e.button.y < 210)
-		printf("%d\n", m->sw);
+		zoom_of(rtv, 0);
 	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 60
 		&& m->e.button.y < 90)
-		printf("%d\n", m->sw);
+		dvig_right(rtv, 1);
 	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 100
 		&& m->e.button.y < 130)
-		printf("%d\n", m->sw);
+		dvig_up(rtv, 1);
 	else if (m->e.button.x > 250 && m->e.button.x < 335 && m->e.button.y > 140
 		&& m->e.button.y < 170)
-		printf("%d\n", m->sw);
+		zoom_on(rtv, 1);
 	else
-		mouse_enlarge1(m);
+		mouse_enlarge1(m, rtv, i, j);
 }

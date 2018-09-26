@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysushkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/21 11:25:36 by ysushkov          #+#    #+#             */
-/*   Updated: 2018/09/21 11:25:47 by ysushkov         ###   ########.fr       */
+/*   Created: 2018/09/25 12:20:21 by ysushkov          #+#    #+#             */
+/*   Updated: 2018/09/25 12:20:24 by ysushkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "menu.h"
+#include "./includes/rt.h"
 
 static void		fields_enlarge(t_menu *m)
 {
@@ -78,11 +78,4 @@ void			ft_sw(t_menu *m)
 		m->slct.rect[i].h = m->f.rect[i + 1].h;
 		i++;
 	}
-}
-
-void			menu_keys(t_menu *m)
-{
-	m->keystate = SDL_GetKeyboardState(NULL);
-	if (m->keystate[SDL_SCANCODE_ESCAPE])
-		m->quit = 1;
 }

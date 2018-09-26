@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysushkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/20 13:36:52 by ysushkov          #+#    #+#             */
-/*   Updated: 2018/09/20 13:36:55 by ysushkov         ###   ########.fr       */
+/*   Created: 2018/09/25 12:23:37 by ysushkov          #+#    #+#             */
+/*   Updated: 2018/09/25 12:23:40 by ysushkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "menu.h"
+#include "./includes/rt.h"
 
 static void		m_text_surf(t_menu *m)
 {
@@ -37,7 +37,8 @@ static void		m_text_surf(t_menu *m)
 	m->txt.s[19] = TTF_RenderText_Solid(m->txt.font, "switch", m->txt.color);
 	m->txt.s[20] = TTF_RenderText_Solid(m->txt.font, "Screenshot:",
 		m->txt.color);
-	m->txt.s[21] = TTF_RenderText_Solid(m->txt.font, "Exit RT:", m->txt.color);
+	m->txt.s[21] = TTF_RenderText_Solid(m->txt.font, "Optimization:",
+		m->txt.color);
 }
 
 static void		m_text_rect1(t_menu *m, int i, int *t)
@@ -112,7 +113,7 @@ static void		m_text_rect3(t_menu *m)
 	m->txt.rect[20].h = 30;
 	m->txt.rect[21].x = 50;
 	m->txt.rect[21].y = 420;
-	m->txt.rect[21].w = 100;
+	m->txt.rect[21].w = 150;
 	m->txt.rect[21].h = 30;
 }
 

@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysushkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/21 18:25:24 by ysushkov          #+#    #+#             */
-/*   Updated: 2018/09/21 18:25:26 by ysushkov         ###   ########.fr       */
+/*   Created: 2018/09/25 12:25:41 by ysushkov          #+#    #+#             */
+/*   Updated: 2018/09/25 12:25:44 by ysushkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "menu.h"
+#include "./includes/rt.h"
 
 static void		check_enlarger(t_menu *m)
 {
